@@ -12,29 +12,76 @@ state = {
     babies,
     currentScore : 0,
     highScore: 0,
+    clicked: []
 };
 
-shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
+handleClick = (id) => {
+    // check if the clicked array has id same as babies array. 
+    if(this.state.clicked.indexOf(id) === -1 ) {
+        
+        // add score and shuffle the cards
+        this.handleIncrement();
+        this.shuffleCards();
+
+        // push the id of the clicked babies images
+        this.state.clicked.push(id);
+        console.log(this.state.clicked);
+
+    }
+    else {
+
+       this.resetGame();
+    }
+    
+};
+
+// increment  the score + 1 everytime it clicks
+handleIncrement = () => {
+
+    let currentScore = this.state.currentScore + 1;
+    let highScore = this.state.highScore;
+    this.setState({ 
+        currentScore: currentScore
+    });
+
+    // if the current score higher than best score, replace the highest score from current score.
+    if(currentScore > highScore ) {
+        this.setState({ highScore :currentScore })
+    }
+    // Player win the game when it hits 10.
+    else if (highScore === 10 ){
+        alert("You Won!!!!");
+    }
+};
+
+// reset the state back  to default  except the bestScore and shuffle the cards
+resetGame = () => {
+    alert("You Lost");
+    this.setState({
+        babies,
+        currentScore : 0,
+        clicked: []
+    });
+
+    this.shuffleCards();
 }
 
-shuffleCard = () => {
-    this.setState({})
-}
+// Randoming the order of cards array
+shuffleCards = () => {
+    const shuffleArray = this.state.babies;
+    shuffleArray.sort(function(a,b) {
+        return 0.5 - Math.random();
+    });
 
-handleClick =() => {
+    this.setState({ babies });
+};
 
-}
 // render all the components
 render() {
     return (
         <MainContainer>
             <Navbar />
-            <Header currentScore = { this.state.currentScore }/>
+            <Header currentScore = { this.state.currentScore } highScore = { this.state.highScore }/>
             <Wrapper>
                 {this.state.babies.map(baby => (
                     <Card
@@ -42,7 +89,7 @@ render() {
                         key = { baby.id }
                         name = { baby.name }
                         image = { baby.image }
-                        handleClick = { this.handleScore }
+                        handleClick = { this.handleClick  }
                     />
                 ))};
             </Wrapper>           

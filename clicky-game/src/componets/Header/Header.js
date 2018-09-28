@@ -1,13 +1,14 @@
 import React from "react";
 import "./Header.css";
 
-const Header = ({ currentScore }) => (
+const Header = ({ currentScore, highScore }) => (
 
 <div className = "jumbotron">
-  <h1 className = "display-4">Hello, world!</h1>
-  <p className = "lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr className = "my-4"/>
-  <span>Score : { currentScore }</span>
+  <h1 className = "display-4">Click Game! </h1>
+  <p className = "lead"> Click on an image to earn points, but don't click on any more than once</p>
+  <div className ="score"> 
+  <span>Score : { currentScore }</span> <span> High Score : { highScore }</span>
+  </div>
 </div>
 
 );

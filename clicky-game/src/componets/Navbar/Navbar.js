@@ -3,8 +3,8 @@ import "./Navbar.css";
 
 const Navbar  = () => (
 
-<nav className="navbar navbar-light bg-light justify-content-between">
-  <a className="navbar-brand">Navbar</a>
+<nav className="navbar navbar-light bg-primary justify-content-between">
+  <a className="navbar-brand">Clicky Game!!</a>
   <form className="form-inline">
   </form>
 </nav>
