@@ -1,6 +1,6 @@
 # babyClicker
 
-Memory game built with React.js
+Memory game built with React.js.our The application seperate the UI into components, manage component state, and respond to user events.
 
 ## Tech
 ```
